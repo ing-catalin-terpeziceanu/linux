@@ -70,13 +70,70 @@ A relative path does not begin with "/" Example: Once we already are inside the 
 
 Create files and directories
 1. Creating files:
-- touch = creates a new file
-- cp = you can copy one file from one destination to another, hence creates a file
-- vi/nano = this one creates a new file using a text editor like vi or nano
+- touch <file> = creates a new file
+- cp <source> <destination> = you can copy one file from one destination to another, hence creates a file
+- vi/nano <file> = this one creates a new file using a text editor like vi or nano
 
 2. Creating directories:
 - mkdir
 
 
+Copying directories "problem"
+- cp -R <source> <destination>
+
+
+Deleting files:
+- rm <filename>
+
+Deleting directories
+- rmdir <directory> = removes empty directory
+- rm -r <directory> = removes non-empty directory
+
+Find files and directories
+- find <location> -name <file> 
+
+Wildcards
+in Linux, we use wildcards to get the output that we are looking for. A wildcard is a character, that can be used as a substitute from any of a class of characters in a search
+* - represents zero or more characters
+? - represents a single character
+
+Soft Links and Hard Links
+First we need to understand what an "inode" is. inode is basically a pointer of a file on a drive.
+Computers understand numbers instead of names. Every time we create a file, computer assigns a number to that file on the drive and associate that number to it. That number is called inode.
+Every time we try to retrieve or read that file, it goes and retrieve that number instead.
+Now, the soft and hard links are shortcuts pointing to some files location.
+A hard link is a direct reference (a pointer) to the data on the drive inode.
+A soft link is a pointer to the name of another file.
+Hard links directly reference the data, while soft links reference the file name.
+
+ln -s <original_file> <soft_link> = creates soft (symlink)
+ln <original_file> <soft_link> = creates a hard link
+
+Example:
+1) Soft link:
+echo "this is an awesome file" > /home/catalin/awesome_file
+cat /home/catalin/awesome_file
+cd /tmp
+ln -s /home/catalin/awesome_file soft_link
+cat /tmp/soft_link
+ls -i /home/catalin/awesome_file
+ls -i /tmp/soft_link
+We can observe a different inode number. 
+rm /home/catalin/awesome_file
+ll /tmp/soft_link
+We can observe the broken link.
+
+2) Hard link:
+echo "this is an even more awesome file" > /home/catalin/more_awesome_file
+cat /home/catalin/more_awesome_file
+cd /tmp
+ln /home/catalin/more_awesome_file hard_link
+cat /tmp/hard_link
+ls -i /home/catalin/more_awesome_file
+ls -i /tmp/hard_link 
+We can observe the same inode number.
+rm /home/catalin/more_awesome_file
+cat  /tmp/hard_link
+We can observe the data is still present in the file, because of the inode.
 
 
