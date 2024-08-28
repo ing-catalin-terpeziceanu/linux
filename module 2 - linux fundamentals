@@ -145,7 +145,64 @@ date
 date > /home/catalin/redirecting_output_to_a_file
 cat /home/catalin/redirecting_output_to_a_file
 
+Example with vi:
 vi /home/catalin/creating_a_file_using_vi
+
+
+
+File maintenance commands
+  - cp = copies one file to another
+  - rm = removed a files
+  - mv = moves a file from one location to another, or it can rename the file
+  - mkdir = creates a directory
+  - rmdir or rm -r  = removes a directory
+  - chown = changes ownership of a file
+  - chgrp = changes group ownership of a file
+
+
+
+File display commands
+  - cat = views the entire content of a file no matter how long it is
+  - less = allows you to view text files one screen at a time. It provides a convenient way to read and navigate through large text files such as log files, configuration files, or documentation
+  - head = will only print the top n(desired) lines from a file
+  - tail = will only print the bottom n(desired) lines from a file
+
+Examples:
+cat /var/log/syslog
+less /var/log/syslog
+head -n5 /var/log/syslog
+tail -n5 /var/log/syslog
+
+
+
+Compress and un-Compress files in Linux
+There are a few different commands that we use to compress and uncompress files.
+But first of all, there is a command that is used commonly in Linux environment and that is called tar.
+Tar takes a bunch of files together, put them in a, let's say a "container" and makes it like one file.
+You can think that when zipping files on Windows, it will add all of them to an compress single file, but tar, will not compress them. It's the gzip command that will compress the tar file and
+reduce it's size afterwards.
+sudo -i
+cd /var/log/
+Let's add all the files and directories into one file (tar)
+tar -cvf all_logs.tar .
+ls -lh all_logs.tar
+Since this file can be very high in size, we can compress it using the following command:
+gzip all_logs.tar
+ls -l
+If we want to uncompress this, we can run the following command:
+gzip -d all_logs.tar.gz
+If we want to untar the file, we can run the following command:
+tar -xvf all_logs.tar
+If we want to tar and compress using a single command we can run the following:
+tar -czvf all_logs.tar.gz .
+To do the reverse: un-compress and untar in a single command we can run the following:
+tar -xzvf all_logs.tar.gz
+
+
+
+
+
+
 
 
 
