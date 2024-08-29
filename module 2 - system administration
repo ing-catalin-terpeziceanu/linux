@@ -1,1 +1,112 @@
+Linux File Editor:
+The Linux file editor is a program which enables you to create and manipulate data in a file.
+There are several standard text editors available on most Linux systems:
+  - vi = visual editor
+  - vim = vi improved
+  - nano = easy to use, friendly editor
+We will focus on vi editor, even though this is not user friendly at the begining, but this editor is powerfull and it's found on almost every Linux distro, even the ancient ones
+VI editor actually supplies commands for inserting or deleting text, replacing text, moving around the file, find and substitute text among many others.
+This editor has two abilities, insert mode, which lets you insert data into the file and command mode which lets you alter the already existing data.
 
+vi editing_file_using_vi
+Once the vi is executed, you are in the command mode, so no data can be inserted. We need to press "i" to be allowed to insert data.
+Once we finish filling the data, we need to hit ESC key, so that we can return to command mode.
+To save the file, you use colon symbol ":" and then w saves the file and q exit the editor.
+If we want to delete data from file, we need to be in command mode, place the cursor at the desired position and hit "x" key.
+If we want to undo the operation, hit "u" key
+If we want to delete a line, hit "dd"
+If we want to replace a character, position the cursor at the desired character and hit "r" 
+If we want to replace a word, position the cursor at the desired word and hit "cw" 
+If we want to search for a string, in command mode, hit "/", type the desired string and press enter. Pressing "n" will move to the same string.
+
+
+
+User Account Management
+There are a few commands that we use to manage user account
+  - useradd = creates new user
+  - groupadd = creates new group
+  - userdel = deletes an existing user
+  - groupdel = deletes an existing group
+  - usermod = modify an existing user
+Whenever we create a new user, there will be 3 files modified in the system: 
+  - /etc/passwd = info about the user
+  - /etc/group = info about the group
+  - /etc/shadow = encrypted password of the users
+
+adduser <username> = adds new username
+id <username> = verify it has been credated and shows the id as well
+cd /home
+ls
+addgroup <group_name> = add new group to the system
+less /etc/group = verify the the group has been added
+userdel -r <username> = deletes the user + it's home directory
+groupdel <group_name>  = deletes the group
+usermod -G <group_name> <username> = adds username to the specified group
+less /etc/group 
+
+less /etc/passwd
+less /etc/group
+less /etc/shadow
+
+
+Switch users and sudo access
+su - <username> = become the desired username
+sudo <command> = execute command as root user
+visudo = edits the /etc/sudoers file which is a configuration file that allows user to add or remove the rights to run certain command as root
+
+If we try for example to execute a privileged command as regular user, we will be denied. Example: fdisk -l
+If we want to allow a user to execute a privileged command, we can do it in visudo with the root account.
+visudo. Here we can see the group sudo which is able to execute sudo commands
+usermod -G sudo <username> = add username to sudoers file
+gpasswd -d <username> sudo = removes username from sudoers file
+
+
+
+Monitor users:
+  - who = tells you who is logged into the system
+  - last = tells you all the details of every users that have been logged in since the day one
+  - pinky = used to be named finger previously. 
+  - id = tells you the information about the username, it's group id and what part of other groups user belongs to
+
+
+Communicating with logged in users:
+  - wall = broadcast the message to all loged in users
+  - write = send a message to specific user
+
+
+
+
+System Utility Commands
+  - date = returns date and time of the system machine
+  - uptime = provides information about how long the system has been running since its last boot 
+  - hostname = displays the system's hostname
+  - uname = provides information about the system's kernel and operating system
+  - which = shows the full path of a binary location
+  - bc = opens calculator
+  
+
+Processes and Jobs
+Before we get into this, I want you to understand what exactly each term means in Linux environment.
+  - Applications = An application is like a program that runs in your computer. Application could be anything like you have in windows (Microsoft Word, PowerPoint, Chrome, etc) 
+  - Script = File containing a series of commands that can be executed by the shell. Scripts are used to automate tasks, perform complex operations, or run sequences of commands.
+  - Process = Is an instance of an app/script that is executed by the system. It is a fundamental concept in OS that represents a running program and includes all the resources and information 
+              needed to manage its execution like Process ID, Parent Process ID, Process State, Resources, etc.
+  - Daemons = type of process that runs in the background
+  - Thread = smallest unit of execution within a process. Enables a process to perform multiple tasks simultaneously, sharing the same resources. Concept in concurrent and parallel programming.
+  - Job = process or a group of processes that are started and managed by the shell. Jobs represent the execution of commands or scripts that are running in the background or foreground.
+  - services = they are background processes that provides various functions or applications, necessary for the system or user applications
+                          Services are often started during system boot and continue to run in the background, handling tasks such as web serving, network management, and logging
+  - ps command = returns which processes are running in the system
+  - top command = powerful utility that provides a dynamic, real-time view of the system's processes and resource usage. used for monitoring system performance and diagnosing system issues
+  - kill command = kills a running process
+  - crontab = utility used to schedule and automate the execution of tasks at specified intervals. It allows users to run scripts or commands periodically without manual intervention.
+  - systemctl = utility used to control system services. It replaces the old "service" command.
+
+Systemd, the service manager used in many modern Linux O.S. responsible for initializing the system, managing system services, and handling system states
+  systemctl <start|stop|status|restart|reload> <service_name> = starts, stops, restarts, reloads, and check running status of a service
+  systemctl <enable|disable> <service_nmame> = manages the startup behavior of services. It controls whether a service should start automatically during the system boot process.
+Example:
+  systemctl status chrony = this will return the status of chrony, which is a versatile and robust Network Time Protocol implementation designed to keep the system clock accurate.
+
+  
+  
