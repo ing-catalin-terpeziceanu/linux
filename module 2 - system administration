@@ -108,5 +108,114 @@ Systemd, the service manager used in many modern Linux O.S. responsible for init
 Example:
   systemctl status chrony = this will return the status of chrony, which is a versatile and robust Network Time Protocol implementation designed to keep the system clock accurate.
 
-  
-  
+
+
+The "ps" Command
+ps command stands for process status and it displays all the currently running processes in your Linux system
+ps = shows the processes of the current shell
+
+When you run the ps command, the output will be in four different columns. One would be PID, process ID, TTY, time, and the CMD
+PID = the unique process ID
+TTY = terminal type that the user it logged-in to
+TIME = amount of CPU in minutes and seconds that the process has been running
+CMD = name of the command
+
+ps -e = show all running processes
+ps -aux = show all running processes in BSD format
+ps -ef = show all running processes in full format listing
+ps -u <username> = show all processes owned by <username>
+
+
+The "top" command
+top command is used to show the linux processes and provides a real time view of the running system
+This command shows the summary information of the system and the list of processes or threads which are currently managed by the Linux kernel.
+When running top, you will see the following fields:
+  - PID = shows task's unique process id
+  - USER = username who owns the task
+  - PR = shows the scheduling prority of the process from the perspective of the kernel
+  - NI = represents the nice value of the task. e negative nice value implies higher priority, and positive nice value means lower priority
+  - VIRT = total virtual memory used by the task
+  - RES = memory consumed by the process in RAM
+  - SHR = represents the amount of shared memory used by task
+  - S: = this field shows the process state in the single-letter form
+  - %CPU = represents CPU ussage
+  - %MEM = whows the memory usage of task
+  - TIME+: = CPU Time, the same as 'TIME', but reflecting more granularity trough hundreds of second
+  - COMMAND = name of the task
+
+top -u = shows tasks/processes owned by the specified user id
+
+The top command is interactive. So we can execute commands from within.
+  - pressing "c" will show absolute command of a process
+  - pressing "k" will kill a process by PID
+  - pressing "M" or "P" will sort the running processes by memory usage / cpu usage
+The top command refreshes the the information by default once every 3 seconds. That can be changed by using "top -d <seconds>"
+A more enhanced command is the "htop" which provides a rich-colored display and visual info about CPU and Memory status.
+
+
+
+The "kill" command
+Kill command is used to terminate process manually. It sends a signal, which ultimately terminates or kills a particular process.
+In some scenarios, when we try to terminate a service by executing "systemctl stop <service_name" it may hang due to many processes associated with it. In this case kill command comes to 
+rescue. 
+
+Usage:
+kill [OPTION] [PID]
+OPTION = signal name or signal number
+PID = process ID
+kill -l  = get the list of all signal names/numbers
+These signals are telling the kernel what to do with the process: whether to restart, to stop, stop gracefully, or to just stop forcefully. 
+The most commonly signals that are used by the system administrators are:
+  - kill PID = kill a process with default signal (which is SIGTERM/15, so a gracefully kill)
+  - kill -2 = interrupt from the keyboard just like CTRL+C
+  - kill -9 = Forcefully kill the process
+  - kill -15 = kills a process gracefully
+
+We can practice these by running:
+systemctl status chrony.service
+get the pid and kill it using kill <PID>
+verify again the systemctl status chrony. it should be dead. let's start it again.
+sleep 500
+kill -9 <pid>
+
+
+
+The "crontab" command
+Crontab command is used to schedule tasks.
+So if you are a system administrator and you run certain commands almost every day, and for a specific time, then you could actually go into the system, log in, and run the command.
+But it would be a little tedious to log in every day at the same time to do the same thing. This is where crontab comes into help.
+Usage:
+crontab -e = edit the crontab
+crontab -l = list the crontab
+The crontab layout:
+* * * * * <command to execute>
+  - first  column = minute (0 - 59)
+  - second column = hour (0 - 23)
+  - third  column = day of month (1-31)
+  - fourth column = month (1-12)
+  - fifth column = day of week (0-6) (Sunday to Saturday)
+  - sixth column = command to execute
+
+
+
+System Monitoring
+top = utility used to show the linux processes and provides a real time view of the running system
+df  = report file system space usage. shows disk partition information
+iostat = powerful tool used for monitoring and analyzing system input/output (I/O) statistics
+ip = used to assign an ip address to a network interface and/or configure network interface parameters on Linux operating systems
+  - ip a = show information about the network cards
+  - ip route = find out routing information such as the gateway
+netstat / ss = list all the network connections or sockets
+free = shows information about used memory + swap space
+cat /proc/cpuinfo
+cat /proc/meminfo
+All these commands will list all the system resources and will tell you how the system is doing, how is it behaving, whether it's running high or low
+
+
+
+
+System maintenance
+Maintenance commands are those that are used by system administrator to reboot the system, shut it down, log-off users, etc.
+  - shutdown = command for shuting down / reboot server
+  - reboot = reboots the machine
+  - halt = shuts down the system right away, no gracefully process stopping needed. just like pressing and holding the power button button of the computer.  
