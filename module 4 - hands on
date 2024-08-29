@@ -9,7 +9,3 @@ mv index.nginx-debian.html disabled
 vim index.html
 
 apt remove --purge nginx
-
-
-
-2. Proxy Server using squid
