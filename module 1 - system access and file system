@@ -2,8 +2,8 @@ Important things before we jump further
 
 Linux has an administrator account called root.
 Root is the most powerful account that can create, modify, delete accounts, and make changes to system configuration files.
-Linux is a case-sensitive system, meaning a file or directory that is created with uppercase ABC is not the same as lowercase abc.
-Avoid using spaces when creating files and directories. Instead, you could use hyphens or dashes.
+Linux is a case-sensitive system, meaning a file or directory that is created with uppercase "ABC" is not the same as lowercase "abc".
+Avoid using spaces when creating files and directories. Instead, you could use hyphens or underlines.
 Linux kernel is not an operating system. It is a small software within Linux operating system that takes commands from users, and pass them through the system hardware and peripherals.
 Linux is mostly CLI even though GUI is available as well. CLI stands for Command-Line Interface, and GUI stand for Graphical User Interface.
 When you are using Windows operating system, you will see everything is in a GUI. You use your mouse, you drag and drop, but in the Linux, most of the corporate environment, you'll see nothing 
@@ -11,11 +11,11 @@ like that. You'll be given a prompt where you would have to run the command usin
 
 Access to Linux system
  - Through the console (direct access to an operating system when it is connected through VGA cable, HDMI, DVI, or any other console or display cable)
- - Through remote software (allows you to connect to your operating system remotely over the network using remote connection software like putty or ssh client)
+ - Through remote software (allows you to connect to your operating system remotely, over the network, using remote connection software like putty or ssh client)
 
 
 Introduction to Filesystem
-Filesystem is a system used by a computer operating system to manage your files and directories. The system controls how data is saved or retrieved from your computer storage device.
+Filesystem is a system used by a computer OS to manage your files and directories. The system controls how data is saved or retrieved from your computer storage device.
 As a comparison you can think to a wardrobe closet. You can organize shirts on one shelf, jeans on another, so on and so forth. It would be difficult to find something when needed, 
 if you were trowing all the clothes in the same shelf.
 So operating system stores file and directories in an organized and structured way.
@@ -25,14 +25,14 @@ Just like in Windows, everything starts from C:/ ,  in Linux, everything starts 
 
 File system Structure and description:
 /boot = is a directory that contains files used for boot loader. Every time the system starts up, the first thing the OS needs is inside /boot
-/root = is the root user home director 
-/dev = is a systems device such as a disk/flash drive, CD-ROM, speakers, keyboard, any of those peripheral devices that are attached to your Linux System
-/etc = one of the most important directory. It has all the configuration files both for the OS and for installed application
-/bin or /usr/bin = directory that contains all the essential CLI binaries necessary for the system to function and for users to interact with the system like ls, cp, mv
-/sbin or /usr/sbin = directory that contains binaries that are primarily used by the system administrator (root user) for maintenance and configuration like fsck, ifconfig, and shutdown.
-/opt = directory used for optional, third-party software packages installed manually, not with a package manager for keeping installations separate from the base system files and applications.
+/root = is the root user home directory 
+/dev = is a system device such as a disk or flash drive, CD-ROM, speakers, keyboard, any of those peripheral devices that are attached to your Linux computer.
+/etc = one of the most important directory. It has all the configuration files both for the OS and for installed applications.
+/bin or /usr/bin = directory that contains all the essential CLI binaries, necessary for the system to function, and for users to interact with the system, like ls, cp, mv
+/sbin or /usr/sbin = directory that contains binaries that are primarily used by the system administrator (root user) for maintenance and configuration, like fsck, ifconfig, and shutdown.
+/opt = directory used for optional third-party software packages, which are installed manually, not with the package manager, for keeping installations separate from the base system files.
 /proc = virtual filesystem directory that provides an interface to kernel and process information. Here we will see all the running processes listed as files, created by the kernel.
-/lib or /usr/lib = directory used to store essential shared libraries like C programming library files, that are required for the basic functioning of the system and applications
+/lib or /usr/lib = directory used to store essential shared libraries like C programming library files, that are required for the basic function of the system and its applications.
 /tmp = directory that is used for writing temporary files
 /home = directory used for regular users. Example /home/catalin. It's where files owned by regular user will be located.
 /var = directory used for storing variable data which changes frequently. This includes files that are written to and modified during the system’s operation, like Log files.
@@ -45,17 +45,17 @@ Navigating to file system:
 - ls = list
 
 File/Directory properties
-Each file or directory in Linux has detailed information, or, in operating system language, properties. It contains information like it's a type (file or directory), where is located, the size, 
-who created it and when, sharing, security information, etc.
+Each file or directory in Linux has detailed information, or, in operating system language, properties. It contains information like its type (file or directory), where is located, the size, 
+who created it and when, sharing capability, security information, etc.
 This information may be seen using "ls -l"
 
 Linux file types:
-- = regular file. Example: a file containg text inside.
+- = regular file. Example: a file containg text.
 d = directory Example: just like a folder in Windows
 l = link Example: a symlink pointing to another file. In windows is called shortcut
 c = special or device file. It represents a device that performs data input/output in a character-by-character manner. Examples include terminals.
-s = socket. It's a special file used for inter-process communication. It allows processes to communicate with each other over the network or within the same system. 
-b = block device. A block device file represents a device that performs data input and output in blocks. Examples include hard drives and USB drives
+s = socket. It's a special file used for inter-process communication. It allows processes to communicate with each other over the network, or within the same system. 
+b = block device. A block device file represents a device that performs data input output in blocks. Examples include hard drives and USB drives
 
 
 Changing password
@@ -93,7 +93,7 @@ Find files and directories
 - find <location> -name <file> 
 
 Wildcards
-in Linux, we use wildcards to get the output that we are looking for. A wildcard is a character, that can be used as a substitute from any of a class of characters in a search
+in Linux, we use wildcards to get the output that we are looking for. A wildcard is a character, that can be used to substitute any character/charectrs.
 * - represents zero or more characters
 ? - represents a single character
 
