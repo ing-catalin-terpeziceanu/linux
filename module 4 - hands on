@@ -1,1 +1,12 @@
+We will make the linux a web server
+
+apt update
+apt install nginx
+cd /etc/nginx/sites-available
+less default
+cd /var/www/html/
+mv index.nginx-debian.html disabled
+vim index.html
+
+apt remove --purge nginx
 
