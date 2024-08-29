@@ -1,4 +1,4 @@
-We will make the linux a web server
+1. Web Server using Nginx
 
 apt update
 apt install nginx
@@ -10,3 +10,6 @@ vim index.html
 
 apt remove --purge nginx
 
+
+
+2. Proxy Server using squid
